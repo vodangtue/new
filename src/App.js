@@ -1,24 +1,26 @@
 import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import './App.css';
+import FeaturesPage from './FeaturesPage';
 
 function Header() {
   return (
     <header className="bg-white shadow-sm">
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         <div className="flex items-center">
-          <span className="text-2xl font-bold">DeepValidator</span>
+          <Link to="/" className="text-2xl font-bold">DeepValidator</Link>
         </div>
         <div className="hidden md:flex items-center space-x-8">
-          <a href="#" className="nav-link">Home</a>
-          <a href="#" className="nav-link">Features</a>
-          <a href="#" className="nav-link">Use Cases</a>
-          <a href="#" className="nav-link">Pricing</a>
-          <a href="#" className="nav-link">Docs</a>
-          <a href="#" className="nav-link">Blog</a>
+          <Link to="/" className="nav-link">Home</Link>
+          <Link to="/features" className="nav-link">Features</Link>
+          <Link to="#" className="nav-link">Use Cases</Link>
+          <Link to="#" className="nav-link">Pricing</Link>
+          <Link to="#" className="nav-link">Docs</Link>
+          <Link to="#" className="nav-link">Blog</Link>
         </div>
         <div className="flex items-center space-x-4">
-          <a href="#" className="text-gray-700">Login</a>
-          <a href="#" className="bg-blue-600 text-white px-4 py-2 rounded-md">Get Started</a>
+          <Link to="#" className="text-gray-700">Login</Link>
+          <Link to="#" className="bg-blue-600 text-white px-4 py-2 rounded-md">Get Started</Link>
         </div>
       </nav>
     </header>
@@ -196,19 +198,30 @@ function Footer() {
   );
 }
 
+function HomePage() {
+  return (
+    <main>
+      <Hero />
+      <Features />
+      <Workflow />
+      <UseCases />
+      <CallToAction />
+    </main>
+  );
+}
+
 function App() {
   return (
-    <div className="min-h-screen">
-      <Header />
-      <main>
-        <Hero />
-        <Features />
-        <Workflow />
-        <UseCases />
-        <CallToAction />
-      </main>
-      <Footer />
-    </div>
+    <Router>
+      <div className="min-h-screen">
+        <Header />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/features" element={<FeaturesPage />} />
+        </Routes>
+        <Footer />
+      </div>
+    </Router>
   );
 }
 
