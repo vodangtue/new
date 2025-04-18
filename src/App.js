@@ -8,6 +8,7 @@ import PricingPage from './pages/Pricing';
 import SignUpPage from './pages/SignUp';
 import LoginPage from './pages/Login';
 import DashboardPage from './pages/Dashboard';
+import ScanDetailPage from './pages/ScanDetail';
 
 // Mock auth state - in real app, this would come from auth context/provider
 const isAuthenticated = true;
@@ -33,10 +34,18 @@ function App() {
           <Route path="/signup" element={<SignUpPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route 
-            path="/dashboard/*" 
+            path="/dashboard" 
             element={
               <ProtectedRoute>
                 <DashboardPage />
+              </ProtectedRoute>
+            } 
+          />
+          <Route 
+            path="/dashboard/scans/:id" 
+            element={
+              <ProtectedRoute>
+                <ScanDetailPage />
               </ProtectedRoute>
             } 
           />
